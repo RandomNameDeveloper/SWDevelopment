@@ -4,6 +4,7 @@ using SWDevelopment.TariffComparison.Implementation;
 using System.Linq;
 using System.Collections.Generic;
 using SWDevelopment.TariffComparison.Domain.Model;
+using System.Threading.Tasks;
 
 namespace TariffComparisonTest
 {
@@ -20,45 +21,45 @@ namespace TariffComparisonTest
         [Test]
         public void ShouldThrowExceptionForIncorrectParameter()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => calculator.CalculateAnnualFee(-1));
+            Assert.Throws<ArgumentOutOfRangeException>(async () => await calculator.CalculateAnnualFee(-1));
         }
 
         [Test]
-        public void TestInputConsumption1000()
+        public async Task TestInputConsumption1000()
         {
-            var results = calculator.CalculateAnnualFee(1000);
+            var results = await calculator.CalculateAnnualFee(1000);
             Assert.AreEqual(GetCostForBasicTariff(results), 280.00m);
             Assert.AreEqual(GetCostForPackageTariff(results), 800.00m);
         }
 
         [Test]
-        public void TestInputConsumption3500()
+        public async Task TestInputConsumption3500()
         {
-            var results = calculator.CalculateAnnualFee(3500);
+            var results = await calculator.CalculateAnnualFee(3500);
             Assert.AreEqual(GetCostForBasicTariff(results), 830.00m);
             Assert.AreEqual(GetCostForPackageTariff(results), 800.00m);
         }
 
         [Test]
-        public void TestInputConsumption4500()
+        public async Task TestInputConsumption4500()
         {
-            var results = calculator.CalculateAnnualFee(4500);
+            var results = await calculator.CalculateAnnualFee(4500);
             Assert.AreEqual(GetCostForBasicTariff(results), 1050.00m);
             Assert.AreEqual(GetCostForPackageTariff(results), 950.00m);
         }
 
         [Test]
-        public void TestInputConsumption6000()
+        public async Task TestInputConsumption6000()
         {
-            var results = calculator.CalculateAnnualFee(6000);
+            var results = await calculator.CalculateAnnualFee(6000);
             Assert.AreEqual(GetCostForBasicTariff(results), 1380.00m);
             Assert.AreEqual(GetCostForPackageTariff(results), 1400.00m);
         }
 
         [Test]
-        public void TestInputConsumption10000()
+        public async Task TestInputConsumption10000()
         {
-            var results = calculator.CalculateAnnualFee(10000);
+            var results = await calculator.CalculateAnnualFee(10000);
             Assert.AreEqual(GetCostForBasicTariff(results), 2260.00m);
             Assert.AreEqual(GetCostForPackageTariff(results), 2600.00m);
         }

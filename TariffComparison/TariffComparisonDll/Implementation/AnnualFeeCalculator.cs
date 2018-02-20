@@ -39,15 +39,13 @@ namespace SWDevelopment.TariffComparison.Implementation
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown when <paramref name="annualConsumption"/> is negative or 0.
         /// </exception>
-        public IEnumerable<TariffAnnualFee> CalculateAnnualFee(int annualConsumption)
+        public async Task<IEnumerable<TariffAnnualFee>> CalculateAnnualFee(int annualConsumption)
         {
             if (annualConsumption < 1)
             {
                 throw new ArgumentOutOfRangeException(nameof(annualConsumption), SHOULD_BE_POSITIVE);
             }
-            var tariffLoadTask = this.tariffProvider.GetAll();
-            tariffLoadTask.Wait();
-            return tariffLoadTask.Result
+            return (await this.tariffProvider.GetAll())
                 .Select(x => AnnualCalculation(annualConsumption, x))
                 .OrderBy(x => x.AnnualCost);
         }

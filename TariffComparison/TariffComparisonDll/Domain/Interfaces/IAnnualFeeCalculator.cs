@@ -9,6 +9,6 @@ namespace SWDevelopment.TariffComparison.Domain.Interfaces
 {
     interface IAnnualFeeCalculator
     {
-        IEnumerable<TariffAnnualFee> CalculateAnnualFee(int annualConsumption);
+        Task<IEnumerable<TariffAnnualFee>> CalculateAnnualFee(int annualConsumption);
     }
 }

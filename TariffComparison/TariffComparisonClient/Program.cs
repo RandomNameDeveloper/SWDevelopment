@@ -11,7 +11,7 @@ namespace TariffComparisonClient
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
             int consumption = 0;
@@ -28,7 +28,7 @@ namespace TariffComparisonClient
                 var calculator = CalculatorBuilder.Create(TariffProviderType.InMemory);
                 try
                 {
-                    var fees = calculator.CalculateAnnualFee(consumption);
+                    var fees = await calculator.CalculateAnnualFee(consumption);
 
                     if (fees.Any())
                     {

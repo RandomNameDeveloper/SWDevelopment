@@ -37,11 +37,11 @@ namespace SWDevelopment.TariffComparison.Implementation
         /// Should be positive number. If not ArgumentOutOfRangeException will be thrown.
         /// </param>
         /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown when <paramref name="annualConsumption"/> is negative or 0.
+        /// Thrown when <paramref name="annualConsumption"/> is negative.
         /// </exception>
         public async Task<IEnumerable<TariffAnnualFee>> CalculateAnnualFee(int annualConsumption)
         {
-            if (annualConsumption < 1)
+            if (annualConsumption < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(annualConsumption), SHOULD_BE_POSITIVE);
             }
